@@ -1,0 +1,99 @@
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="/portal/resources/style-guide/css/fluig-style-guide.min.css"/>
+		<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+		<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+		<script type="text/javascript" src="/portal/resources/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+		<script type ="text/javascript" src="../vcXMLRPC.js"></script>
+	</head>
+	<body>
+		<div class="fluig-style-guide">
+			<form name="form" role="form">
+				
+				<h1>Solicitação Atendimento</h1>
+				<hr />
+				
+				<div class="form-group col-md-2 col-xs-12 col-sm-12">
+					
+					<label for="NOME_SOLICITANTE">Nome do soliciatnte:</label>
+					<input type="text" class="form-control" name="NOME_SOLICITANTE" id="NOME_SOLICITANTE" placeholder="Nome Solicitante">
+					
+				</div>
+				
+				<div class="form-group col-md-10 col-xs-12 col-sm-12">
+				
+					<label for="AREA_ATENDIMENTO">Nome da área:</label>
+					<select class="form-control" name="AREA_ATENDIMENTO" id="AREA_ATENDIMENTO" dataset="ds_form_area_atendimento_william" datasetkey="NOMEAREA" datasetvalue="NOMEAREA" >
+					</select>
+					
+				</div>
+				
+				<div class="form-group col-md-10 col-xs-12 col-sm-12">
+				
+					<label for="DESC_CHAMADO">Descrição</label>
+					<textarea name="DESC_CHAMADO" id="DESC_CHAMADO" class="form-control" rows="3"></textarea>
+							
+				</div>
+				
+				<div class="form-group col-md-10 col-xs-12 col-sm-12">
+				
+					<label for="PRIORIDADEATEND">Prioridade:</label>
+						<input 
+							type="zoom"
+							id="PRIORIDADEATEND"
+							name="PRIORIDADEATEND"
+							data-zoom="{
+									'displayKey':'PRIORIDADE',
+									'datasetId':'ds_prioridade_atendimento',
+									'fields':[
+												{
+													'field':'CODPRIORIDADE',
+													'label':'Código',
+													'search':'true'
+													
+												},
+												{
+													'field':'PRIORIDADE',
+													'label':'Prioridade',
+													'search':'true'
+													
+												}
+												
+											]
+										}"/>
+				</div>
+									
+				<div class="form-group col-md-10 col-xs-12 col-sm-12">
+				
+					<label for="STATUSATEND">Status:</label>
+						<select name="STATUSATEND" id="STATUSATEND" class="form-control">
+							<option value="Aberto">Aberto</option>
+							<option value="Andamento">Andamento</option>
+							<option value="Encerrado">Encerrado</option>
+						</select>
+					
+				</div>
+							
+				<div class="form-group col-md-10 col-xs-12 col-sm-12">
+				
+					<label for="USUARIOS">Usuários:</label>
+						<select name="USUARIOS" id="USUARIOS" class="form-control">
+						</select>
+				
+				</div>
+			
+			</form>
+		</div>
+		</body>
+	<script>
+		
+		var meuDs = DatasetFactory.getDataset("colleague", null, null, null);
+		
+		for ( i = 0; i < meuDs.values.length; i++ ){
+			
+			console.log(meuDs.values[i].colleagueName);
+				$("#USUARIOS").append("<option value="+meuDs.values[i].colleagueName+">"+meuDs.values[i].colleagueName+"</option>");
+		}
+	</script>
+</html>
